@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Facebook Calendar (Randomizer)</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <div id="calendar">
+      <div id="axis">
+        <ul>
+          <li><strong>9:00</strong> AM</li>
+          <li>9:30</li>
+          <li><strong>10:00</strong> AM</li>
+          <li>10:30</li>
+          <li><strong>11:00</strong> AM</li>
+          <li>11:30</li>
+          <li><strong>12:00</strong> PM</li>
+          <li>12:30</li>
+          <li><strong>1:00</strong> PM</li>
+          <li>1:30</li>
+          <li><strong>2:00</strong> PM</li>
+          <li>2:30</li>
+          <li><strong>3:00</strong> PM</li>
+          <li>3:30</li>
+          <li><strong>4:00</strong> PM</li>
+          <li>4:30</li>
+          <li><strong>5:00</strong> PM</li>
+          <li>5:30</li>
+          <li><strong>6:00</strong> PM</li>
+          <li>6:30</li>
+          <li><strong>7:00</strong> PM</li>
+          <li>7:30</li>
+          <li><strong>8:00</strong> PM</li>
+          <li>8:30</li>
+          <li><strong>9:00</strong> PM</li>
+        </ul>
+      </div>
+      <div id="container"></div>
+    </div>
+    <script src="js/vendor/shim.js"></script>
+    <script src="js/calendar.js"></script>
+    <script>
+      Calendar.ready(function() {
+        var events = [],
+            len    = Math.floor(Math.random() * 10) + 1;
+
+        var shuffle = function(o){ //v1.0
+            for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+            return o;
+        };
+
+        for (var i = 0; i < len; i++) {
+          events[i] = {
+            id: i + 1,
+            start: Math.floor(Math.random() * 720)
+          };
+          events[i].end = Math.floor(Math.random() * (720 - events[i].start) + events[i].start);
+        }
+
+        Calendar.render(shuffle(events));
+      });
+    </script>
+  </body>
+</html>
